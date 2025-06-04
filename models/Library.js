@@ -11,6 +11,20 @@ const LibrarySchema = new mongoose.Schema({
     type: String,
     required: true
   },
+copies: [
+    {
+      book: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Book",
+        required: true,
+      },
+      quantity: {
+        type: Number,
+        default: 1,
+        min: 0,
+      },
+    },
+  ],
   city: String,
   address: String
 }, {

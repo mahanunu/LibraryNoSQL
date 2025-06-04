@@ -1,9 +1,9 @@
-import Pokemon from "../models/Pokemon.js";
+import Book from "../models/Book.js";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-const pokemons = [
+const books = [
   {
     name: "Pikachu",
     types: ["Electric"],
