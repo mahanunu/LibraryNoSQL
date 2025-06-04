@@ -327,11 +327,11 @@ const books = [
   },
 ];
 
-const seedPokemons = async () => {
-  await Pokemon.deleteMany({});
-  console.log("Old pokemon deleted");
-  await Pokemon.insertMany(pokemons);
-  console.log("Seed pokemon inserted");
+const seedBooks = async () => {
+  await Book.deleteMany({});
+  console.log("Old Book deleted");
+  await Book.insertMany(books);
+  console.log("Seed Book inserted");
 };
 
-export default seedPokemons;
+export default seedBooks;

@@ -1,32 +1,32 @@
 import express from "express";
 import {
-  getPokemons,
-  createPokemon,
-  getPokemonById,
-  updatePokemon,
-  deletePokemon,
-  getPokemonSummary,
-  updatePokemonSummary,
+  getBooks,
+  createBook,
+  getBookById,
+  updateBook,
+  deleteBook,
+  getBookSummary,
+  updateBookSummary,
   countByType,
   countPerType,
   findByName,
-  isBasePokemon
-} from "../controllers/PokemonController.js";
+  isBaseBook
+} from "../controllers/BookController.js";
 
 const router = express.Router();
 
-router.get("/", getPokemons);
-router.post("/", createPokemon);
+router.get("/", getBooks);
+router.post("/", createBook);
 
-router.get("/summary/:id", getPokemonSummary);
-router.put("/summary/:id", updatePokemonSummary);
+router.get("/summary/:id", getBookSummary);
+router.put("/summary/:id", updateBookSummary);
 router.get("/count/type/:type", countByType);
 router.get("/count/per-type", countPerType);
 router.get("/search/by-name", findByName);
-router.get("/is-base/:id", isBasePokemon);
+router.get("/is-base/:id", isBaseBook);
 
-router.get("/:id", getPokemonById);
-router.put("/:id", updatePokemon);
-router.delete("/:id", deletePokemon);
+router.get("/:id", getBookById);
+router.put("/:id", updateBook);
+router.delete("/:id", deleteBook);
 
 export default router;
