@@ -1,28 +1,44 @@
-import createError from 'http-errors';
-import express from 'express';
-import logger from 'morgan';
-import dotenv from 'dotenv';
-import connectDB from './config/db.js';
-
-import indexRouter from './routes/index.js';
-import pokemonRouter from './routes/pokemons.js';
-import trainerRouter from './routes/trainer.js'
-
-dotenv.config();
-connectDB();
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
 
 const app = express();
 
-app.use(logger('dev'));
+// Middleware
+app.use(cors());
 app.use(express.json());
 
-// Routes
-app.use('/', indexRouter);
-app.use('/pokemons', pokemonRouter);
-app.use('/trainers', trainerRouter)
-
-app.use(function(req, res, next) {
-  next(createError(404));
+// Connexion à MongoDB
+mongoose.connect('mongodb://127.0.0.1:27017/librarynosql', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => {
+  console.log('Connexion à MongoDB établie avec succès');
+}).catch(err => {
+  console.error('Erreur de connexion à MongoDB:', err);
+  process.exit(1);
 });
 
-export default app;
+// Routes API
+app.get('/api/books', async (req, res) => {
+  const Book = require('./models/Book');
+  try {
+    const books = await Book.find();
+    res.json(books);
+  } catch (error) {
+    res.status(500).json({ error: 'Erreur lors de la récupération des livres' });
+  }
+});
+
+// Route pour récupérer tous les utilisateurs
+app.get('/api/users', async (req, res) => {
+  const User = require('./models/User');
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ error: 'Erreur lors de la récupération des utilisateurs' });
+  }
+});
+
+module.exports = app;
