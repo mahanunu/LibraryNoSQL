@@ -1,45 +1,43 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
-const BookSchema = new mongoose.Schema({
+const bookSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true,
-    trim: true
+    required: true
   },
+  slogan: String,
   auteur: {
     type: String,
-    required: true,
-    trim: true
+    required: true
   },
   editeur: String,
   collection: String,
   numero_de_collection: Number,
   univers: String,
-  langue: String,
+  langue: {
+    type: String,
+    default: 'Français'
+  },
   genre: String,
   resume: {
     type: String,
-    maxlength: 2000
+    maxLength: 2000
   },
-  code_barres: {
-    type: Number,
-    unique: true,
-    sparse: true
-  },
-  couverture: String, // URL image
+  code_barres: Number,
+  couverture: String,
   copyright: String,
   illustration: String,
   site_editeur: String,
-  prix: Number,
+  prix: {
+    type: Number,
+    min: 0
+  },
   isbn: {
     type: Number,
-    unique: true,
-    sparse: true
+    unique: true
   }
 }, {
   timestamps: true
 });
 
-const Book = mongoose.model("Book", BookSchema);
-
-export default Book;
+module.exports = mongoose.model('Book', bookSchema);
