@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Bibliothèque</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Gestion de Bibliothèque</h1>
+        
+        <!-- Section Statistiques -->
+        <div class="stats-section">
+            <h2>Statistiques</h2>
+            <div class="stats-container">
+                <div class="stats-card">
+                    <h3>Moyenne d'emprunts par client</h3>
+                    <p id="averageLoans">Chargement...</p>
+                </div>
+                <div class="stats-card">
+                    <h3>Emprunts par genre</h3>
+                    <canvas id="genreChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulaire d'ajout de livre - champs obligatoires uniquement -->
+        <div class="form-container">
+            <h2>Ajouter un nouveau livre</h2>
+            <form id="addBookForm">
+                <input type="text" id="title" placeholder="Titre du livre *" required>
+                <input type="text" id="author" placeholder="Auteur *" required>
+                <input type="number" id="isbn" placeholder="ISBN *" required>
+                <button type="submit">Ajouter le livre</button>
+            </form>
+        </div>
+
+        <!-- Modal de modification - tous les champs disponibles -->
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Modifier le livre</h2>
+                <form id="editBookForm">
+                    <input type="hidden" id="editBookId">
+                    <div class="form-section">
+                        <h3>Informations obligatoires</h3>
+                        <input type="text" id="editTitle" placeholder="Titre du livre *" required>
+                        <input type="text" id="editAuteur" placeholder="Auteur *" required>
+                        <input type="number" id="editIsbn" placeholder="ISBN *" required>
+                    </div>
+                    <div class="form-section">
+                        <h3>Informations complémentaires</h3>
+                        <input type="text" id="editSlogan" placeholder="Slogan">
+                        <input type="text" id="editEditeur" placeholder="Éditeur">
+                        <input type="text" id="editCollection" placeholder="Collection">
+                        <input type="number" id="editNumeroCollection" placeholder="Numéro dans la collection">
+                        <input type="text" id="editUnivers" placeholder="Univers">
+                        <input type="text" id="editLangue" placeholder="Langue">
+                        <input type="text" id="editGenre" placeholder="Genre">
+                        <input type="number" id="editPrix" placeholder="Prix" step="0.01">
+                        <textarea id="editResume" placeholder="Résumé du livre"></textarea>
+                    </div>
+                    <button type="submit">Sauvegarder les modifications</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Liste des livres -->
+        <div class="books-container">
+            <h2>Liste des livres</h2>
+            <!-- Barre de recherche avancée -->
+            <div class="search-container">
+                <div class="search-basic">
+                    <input type="text" id="searchInput" placeholder="Rechercher par titre, auteur ou résumé..." class="search-input">
+                </div>
+                <div class="advanced-search">
+                    <div class="search-group">
+                        <label for="isbnSearch">ISBN :</label>
+                        <input type="text" id="isbnSearch" placeholder="Rechercher par ISBN" class="search-input">
+                    </div>
+                    <div class="search-group">
+                        <label>Année de publication :</label>
+                        <div class="year-inputs">
+                            <input type="number" id="yearFrom" placeholder="Année min" class="search-input year-input" min="1000" max="2100">
+                            <span>à</span>
+                            <input type="number" id="yearTo" placeholder="Année max" class="search-input year-input" min="1000" max="2100">
+                        </div>
+                    </div>
+                    <button id="toggleAdvancedSearch" class="toggle-search">Masquer les filtres 🔍</button>
+                </div>
+            </div>
+            <div id="booksList"></div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

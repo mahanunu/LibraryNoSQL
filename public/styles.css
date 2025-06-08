@@ -1,0 +1,68 @@
+.stats-section {
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.stats-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.stats-card h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+.stats-card p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #007bff;
+    margin: 1rem 0;
+}
+
+#genreChart {
+    width: 100%;
+    height: 300px;
+}
+
+/* Styles pour le reste de l'application */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.form-container {
+    margin-top: 1rem;
+}
+
+.books-container {
+    margin-top: 1rem;
+}
+
+/* Style responsive */
+@media (max-width: 600px) {
+    .stats-container {
+        flex-direction: column;
+    }
+    
+    .stats-card {
+        width: 100%;
+    }
+    
+    #genreChart {
+        height: 100px;
+    }
+} 
